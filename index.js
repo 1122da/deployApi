@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const router = express.Router();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -15,4 +16,5 @@ app.use("/api/category", category_routes);
 app.use("/api/dishes", dishes_routes);
 app.use("/api/orders", orders_routes);
 app.use("/static", express.static("images"));
+app.use("/.netlify/functions/api", router);
 app.listen(process.env.PORT || 4000);
